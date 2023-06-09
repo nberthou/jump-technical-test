@@ -1,26 +1,35 @@
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { useQuery } from "react-query"
 import styled from "styled-components"
 
 import type { Beer, BeerData } from "../types"
 import { BeerItem } from "./BeerItem"
+import { SearchBar } from "./SearchBar"
 
 
 const Container = styled.div`
     width: 75%;
 `;
 
-const fetchBeers = (): Promise<Beer[]> => 
-  axios.get(`${process.env.NEXT_PUBLIC_API_URL}/beers?per_page=10`)
+const fetchBeers = (searchInput: string): Promise<Beer[]> => 
+  axios.get(`${process.env.NEXT_PUBLIC_API_URL}/beers?per_page=10${searchInput ? `&beer_name=${searchInput}` : ''}`)
   .then((res) => res.data
   .map(({ id, name, description, tagline, image_url, first_brewed }: BeerData) => ({ id, name, description, tagline, image: image_url, firstBrewed: first_brewed }))
   )
 
 export const BeersList = () => {
-    const { isLoading, data: beers } = useQuery({
+
+    const [searchInput, setSearchInput] = useState<string>('')
+
+    const { isLoading, data: beers, refetch: refetchBeers } = useQuery({
         queryKey: ['getBeers'],
-        queryFn: () =>fetchBeers(),
+        queryFn: () =>fetchBeers(searchInput),
       })
+
+      useEffect(() => {
+        refetchBeers()
+      }, [searchInput, refetchBeers])
 
     return (
         <Container>
@@ -29,6 +38,7 @@ export const BeersList = () => {
             <p>Loading...</p>
           ) : (
            <div>
+            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} />
             {beers?.map((beer: Beer) => (
                <BeerItem beer={beer} key={beer.id} />
             ))}
