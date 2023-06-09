@@ -26,10 +26,8 @@ export const BeerItem: FC<BeerItemProps> = ({beer}) => {
     
     return (
         <ItemContainer>
-                <div>
-                    <BeerName>{beer.name}</BeerName>
-                    <BeerFirstBrewed>{beer.firstBrewed}</BeerFirstBrewed>
-                </div>
+            <BeerName>{beer.name}</BeerName>
+            <BeerFirstBrewed>{beer.firstBrewed}</BeerFirstBrewed>
         </ItemContainer>
     )
 }
