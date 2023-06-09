@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 
 import { BeersList } from './components/BeersList'
+import { RandomBeersList } from './components/RandomBeersList'
 
 const Container = styled.main`
   display: flex;
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
 
       <Container>
         <h1>🍻 Jump - Beer catalog</h1>
+        <RandomBeersList />
         <BeersList />
       </Container>
     </div>
