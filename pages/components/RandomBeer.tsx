@@ -45,11 +45,6 @@ export const RandomBeer: FC<RandomBeerProps> = ({ queryKey }) => {
 
     const beer = randomBeer?.[0]
 
-    console.debug('--------------------------------------------')
-    console.debug('RandomBeer.tsx beer?.image l.47', beer?.image);
-    console.debug('--------------------------------------------')
-    
-
     return isLoading ? (
         <p>Loading...</p>
     ) : (
