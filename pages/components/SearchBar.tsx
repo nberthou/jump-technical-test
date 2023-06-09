@@ -17,10 +17,6 @@ const StyledInput = styled.input`
 `;
 
 
-export const SearchBar: React.FC<SearchBarProps> = ({searchInput, setSearchInput}) => {
-    return (
-        <>
+export const SearchBar: React.FC<SearchBarProps> = ({searchInput, setSearchInput}) => (
         <StyledInput type="text" onChange={e => setSearchInput(e.target.value.split(' ').join('_'))} value={searchInput} />
-        </>
-    )
-}
+)
