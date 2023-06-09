@@ -1,5 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import styled from 'styled-components'
+
+import { BeersList } from './components/BeersList'
+
+const Container = styled.main`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +19,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main></main>
+      <Container>
+        <h1>🍻 Jump - Beer catalog</h1>
+        <BeersList />
+      </Container>
     </div>
   )
 }
