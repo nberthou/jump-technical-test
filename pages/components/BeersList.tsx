@@ -15,7 +15,7 @@ const Container = styled.div`
 const fetchBeers = (searchInput: string): Promise<Beer[]> => 
   axios.get(`${process.env.NEXT_PUBLIC_API_URL}/beers?per_page=10${searchInput ? `&beer_name=${searchInput}` : ''}`)
   .then((res) => res.data
-  .map(({ id, name, description, tagline, image_url, first_brewed }: BeerData) => ({ id, name, description, tagline, image: image_url, firstBrewed: first_brewed }))
+  .map(({ id, name, first_brewed }: BeerData) => ({ id, name, firstBrewed: first_brewed }))
   )
 
 export const BeersList = () => {

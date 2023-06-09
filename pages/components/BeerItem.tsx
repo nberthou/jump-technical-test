@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
+
 import type { Beer } from '../types'
 
 type BeerItemProps = {
@@ -23,9 +25,9 @@ const BeerFirstBrewed = styled.p`
 `;
 
 export const BeerItem: FC<BeerItemProps> = ({beer}) => {
-    
+    const router = useRouter()
     return (
-        <ItemContainer>
+        <ItemContainer onClick={() => router.push(`/beers/${beer?.id}`)}>
             <BeerName>{beer.name}</BeerName>
             <BeerFirstBrewed>{beer.firstBrewed}</BeerFirstBrewed>
         </ItemContainer>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import type { Beer, BeerData } from "../types";
 
@@ -43,12 +44,14 @@ export const RandomBeer: FC<RandomBeerProps> = ({ queryKey }) => {
         refetchInterval: 10000,
     })
 
+    const router = useRouter()
+
     const beer = randomBeer?.[0]
 
     return isLoading ? (
         <p>Loading...</p>
     ) : (
-        <Container>
+        <Container onClick={() => router.push(`/beers/${beer?.id}`)}>
             {beer?.image && <Image src={beer?.image} alt={beer?.name} width={25} height={75} />}
             <BeerName>{beer?.name}</BeerName>
             <BeerTagline>{beer?.tagline}</BeerTagline>
