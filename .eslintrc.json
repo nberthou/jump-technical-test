@@ -1,3 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "next", "next/typescript-eslint", "eslint:recommended", "plugin:react/recommended"]
+  "extends": ["next/core-web-vitals", "next", "eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off"
+   }
 }
